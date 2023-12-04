@@ -14,6 +14,9 @@ namespace StarterAssets
 #endif
     public class ThirdPersonController : MonoBehaviour
     {
+
+        [SerializeField] private float dashTime = .25f;
+        [SerializeField] private float dashSpeed = 20f;
         [Header("Player")]
         [Tooltip("Move speed of the character in m/s")]
         public float MoveSpeed = 2.0f;
@@ -108,6 +111,7 @@ namespace StarterAssets
 
         private const float _threshold = 0.01f;
 
+
         private bool _hasAnimator;
 
         private bool IsCurrentDeviceMouse
@@ -135,7 +139,7 @@ namespace StarterAssets
         private void Start()
         {
             _cinemachineTargetYaw = CinemachineCameraTarget.transform.rotation.eulerAngles.y;
-            
+
             _hasAnimator = TryGetComponent(out _animator);
             _controller = GetComponent<CharacterController>();
             _input = GetComponent<StarterAssetsInputs>();
@@ -267,7 +271,14 @@ namespace StarterAssets
 
             Vector3 targetDirection = Quaternion.Euler(0.0f, _targetRotation, 0.0f) * Vector3.forward;
 
+            //if(_verticalVelocity < 0.0f)
+            //{
+            //    _speed *= 1.5f;
+            //}
             // move the player
+            //print(canDash);
+            //if (!canDash)
+            //    return;
             _controller.Move(targetDirection.normalized * (_speed * Time.deltaTime) +
                              new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
 
@@ -302,14 +313,19 @@ namespace StarterAssets
                 // Jump
                 if (_input.jump && _jumpTimeoutDelta <= 0.0f)
                 {
-                    // the square root of H * -2 * G = how much velocity needed to reach desired height
-                    _verticalVelocity = Mathf.Sqrt(JumpHeight * -2f * Gravity);
+                    //// the square root of H * -2 * G = how much velocity needed to reach desired height
+                    //_verticalVelocity = Mathf.Sqrt(JumpHeight * -2f * Gravity);
 
-                    // update animator if using character
-                    if (_hasAnimator)
-                    {
-                        _animator.SetBool(_animIDJump, true);
-                    }
+                    //// update animator if using character
+                    //if (_hasAnimator)
+                    //{
+                    //    _animator.SetBool(_animIDJump, true);
+                    ////}
+                    //if(canDash)
+                    //{
+                    //    Dash();
+
+                    //}
                 }
 
                 // jump timeout
@@ -388,5 +404,24 @@ namespace StarterAssets
                 AudioSource.PlayClipAtPoint(LandingAudioClip, transform.TransformPoint(_controller.center), FootstepAudioVolume);
             }
         }
+
+        //private void Dash()
+        //{
+        //    StartCoroutine(PerformDash());
+        //}
+        //private bool canDash = true;
+        //private IEnumerator PerformDash()
+        //{
+        //    canDash = false;
+        //    _input.jump = false;
+        //    float startTime = Time.time;
+        //    while (Time.time < startTime + dashTime)
+        //    {
+        //        _controller.Move(new Vector3(dashSpeed * transform.forward.x, 0, dashSpeed * transform.forward.z));
+        //        yield return null;
+        //    }
+        //    canDash = true;
+
+        //}
     }
 }
