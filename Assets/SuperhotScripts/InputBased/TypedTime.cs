@@ -13,6 +13,7 @@ public class TypedTime : MonoBehaviour
     [SerializeField] private float runStart = 5f;
 
     [SerializeField] private CharacterController player;
+    [SerializeField] private ThirdPersonController controller;
     private StarterAssetsInputs input;
 
 
@@ -20,7 +21,7 @@ public class TypedTime : MonoBehaviour
     {
         player = GetComponent<CharacterController>();
         input = GetComponent<StarterAssetsInputs>();
-
+        controller = GetComponent<ThirdPersonController>();
     }
 
     private void Update()
@@ -32,12 +33,12 @@ public class TypedTime : MonoBehaviour
             //{
             if (input.move.magnitude > runStart)
             {
-                print("Running");
+                //print("Running");
                 Time.timeScale = runTime;
             }
             else
             {
-                print("Walking");
+                //print("Walking");
                 Time.timeScale = moveTime;
             }
             Time.fixedDeltaTime = .02f * Time.timeScale;
@@ -61,6 +62,12 @@ public class TypedTime : MonoBehaviour
             Time.fixedDeltaTime = .02f * Time.timeScale;
             doSlowMo = true;
             //}
+        }
+        if (controller.IsDashing)
+        {
+            Time.timeScale = runTime;
+            Time.fixedDeltaTime = .02f * Time.timeScale;
+
         }
 
     }

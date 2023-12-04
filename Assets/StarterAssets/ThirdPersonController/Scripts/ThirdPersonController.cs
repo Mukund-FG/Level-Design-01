@@ -1,4 +1,5 @@
-﻿ using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 #if ENABLE_INPUT_SYSTEM 
 using UnityEngine.InputSystem;
 #endif
@@ -163,11 +164,36 @@ namespace StarterAssets
             JumpAndGravity();
             GroundedCheck();
             Move();
+            //print("CAN DASH " + canDash);
+            //print("IS DASHING" + IsDashing);
+            //print("JUMP PRESSED " + _input.jump);
+            if (_input.jump)
+            {
+
+                //// the square root of H * -2 * G = how much velocity needed to reach desired height
+                //_verticalVelocity = Mathf.Sqrt(JumpHeight * -2f * Gravity);
+
+                //// update animator if using character
+                //if (_hasAnimator)
+                //{
+                //    _animator.SetBool(_animIDJump, true);
+                ////}
+                ///
+
+                if (IsDashing == false && canDash)
+                {
+                    print("DASH");
+                    Dash();
+
+                }
+            }
+
         }
 
         private void LateUpdate()
         {
             CameraRotation();
+           
         }
 
         private void AssignAnimationIDs()
@@ -217,6 +243,8 @@ namespace StarterAssets
 
         private void Move()
         {
+            if (IsDashing)
+                return;
             // set target speed based on move speed, sprint speed and if sprint is pressed
             float targetSpeed = _input.sprint ? SprintSpeed : MoveSpeed;
 
@@ -277,10 +305,11 @@ namespace StarterAssets
             //}
             // move the player
             //print(canDash);
-            //if (!canDash)
-            //    return;
-            _controller.Move(targetDirection.normalized * (_speed * Time.deltaTime) +
-                             new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
+            
+           
+                _controller.Move(targetDirection.normalized * (_speed * Time.deltaTime) +
+                            new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
+           
 
             // update animator if using character
             if (_hasAnimator)
@@ -309,24 +338,13 @@ namespace StarterAssets
                 {
                     _verticalVelocity = -2f;
                 }
-
-                // Jump
-                if (_input.jump && _jumpTimeoutDelta <= 0.0f)
+                if (!IsDashing)
                 {
-                    //// the square root of H * -2 * G = how much velocity needed to reach desired height
-                    //_verticalVelocity = Mathf.Sqrt(JumpHeight * -2f * Gravity);
-
-                    //// update animator if using character
-                    //if (_hasAnimator)
-                    //{
-                    //    _animator.SetBool(_animIDJump, true);
-                    ////}
-                    //if(canDash)
-                    //{
-                    //    Dash();
-
-                    //}
+                    canDash = true;
                 }
+                // Jump
+                //if (_input.jump && _jumpTimeoutDelta <= 0.0f)
+               
 
                 // jump timeout
                 if (_jumpTimeoutDelta >= 0.0f)
@@ -354,7 +372,7 @@ namespace StarterAssets
                 }
 
                 // if we are not grounded, do not jump
-                _input.jump = false;
+                //_input.jump = false;
             }
 
             // apply gravity over time if under terminal (multiply by delta time twice to linearly speed up over time)
@@ -405,23 +423,30 @@ namespace StarterAssets
             }
         }
 
-        //private void Dash()
-        //{
-        //    StartCoroutine(PerformDash());
-        //}
-        //private bool canDash = true;
-        //private IEnumerator PerformDash()
-        //{
-        //    canDash = false;
-        //    _input.jump = false;
-        //    float startTime = Time.time;
-        //    while (Time.time < startTime + dashTime)
-        //    {
-        //        _controller.Move(new Vector3(dashSpeed * transform.forward.x, 0, dashSpeed * transform.forward.z));
-        //        yield return null;
-        //    }
-        //    canDash = true;
+        private void Dash()
+        {
+            if (canDash)
+            {
+                StartCoroutine(PerformDash());
+            }
+        }
+        private bool canDash = true;
+        public bool IsDashing { get; set; } = false;
+        private IEnumerator PerformDash()
+        {
+            canDash = false;
+            IsDashing = true;
+            _input.jump = false;
+            float startTime = Time.time;
+            while (Time.time < startTime + dashTime)
+            {
+                _controller.Move(new Vector3(dashSpeed * transform.forward.x, 0, dashSpeed * transform.forward.z));
+                yield return new WaitForFixedUpdate();
+            }
+            //yield return new WaitForSeconds(1);
+            IsDashing = false;
+            //canDash = true;
 
-        //}
+        }
     }
 }
