@@ -6,17 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="83778265-f002-4cbb-ba2e-ba4f3ac6236f" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Level-Design-01/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Level-Design-01/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Respawn.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Respawn.cs.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Mukund.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Mukund.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Mukund.unity.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Mukund.unity.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/StarterAssets/ThirdPersonController/Scenes/Playground.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/StarterAssets/ThirdPersonController/Scenes/Playground.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/SyntyStudios/PolygonAdventure/Materials/Characters_Black.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/SyntyStudios/PolygonAdventure/Materials/Characters_Black.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/SyntyStudios/PolygonAdventure/Materials/Characters_Brown.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/SyntyStudios/PolygonAdventure/Materials/Characters_Brown.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/SyntyStudios/PolygonAdventure/Materials/Characters_White.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/SyntyStudios/PolygonAdventure/Materials/Characters_White.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/SyntyStudios/PolygonCity/Materials/PolygonCity_Mat_01_A.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/SyntyStudios/PolygonCity/Materials/PolygonCity_Mat_01_A.mat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.probuilder/Settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.probuilder/Settings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/ShaderGraphSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ShaderGraphSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/URPProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/URPProjectSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -107,7 +100,8 @@
       <workItem from="1701370222722" duration="874000" />
       <workItem from="1701717248332" duration="1520000" />
       <workItem from="1701718807925" duration="469000" />
-      <workItem from="1701719297857" duration="1334000" />
+      <workItem from="1701719297857" duration="1592000" />
+      <workItem from="1701765355093" duration="1076000" />
     </task>
     <servers />
   </component>
